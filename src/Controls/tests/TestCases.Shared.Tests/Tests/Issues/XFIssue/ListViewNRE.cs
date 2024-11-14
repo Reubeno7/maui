@@ -2,23 +2,28 @@
 using UITest.Appium;
 using UITest.Core;
 
-namespace Microsoft.Maui.TestCases.Tests.Issues;
-
-public class ListViewNRE : _IssuesUITest
+namespace Microsoft.Maui.TestCases.Tests.Issues
 {
-	public ListViewNRE(TestDevice testDevice) : base(testDevice)
+	public class ListViewNRE : _IssuesUITest
 	{
+		public ListViewNRE(TestDevice testDevice) : base(testDevice)
+		{
+		}
+
+		public override string Issue => "ListView crashes when disposed on ItemSelected";
+
+		[Test]
+		[Category(UITestCategories.ListView)]
+		public void ListViewNRETest()
+		{
+			// Wait for the ListView to be displayed
+			App.WaitForElement("1");
+
+			// Tap on the item with AutomationId "1"
+			App.Tap("1");
+
+			// Verify that the success message is displayed
+			App.WaitForElement("Success");
+		}
 	}
-
-	public override string Issue => "ListView crashes when disposed on ItemSelected";
-
-	//[Test]
-	//[Category(UITestCategories.ListView)]
-	//[FailsOnIOS]
-	//public void ListViewNRETest()
-	//{
-	//	App.WaitForElement(q => q.Marked("1"));
-	//	App.Tap(q => q.Marked("1"));
-	//	App.WaitForElement(q => q.Marked(Success));
-	//}
 }
