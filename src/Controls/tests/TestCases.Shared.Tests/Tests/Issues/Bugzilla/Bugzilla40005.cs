@@ -17,13 +17,11 @@ namespace Microsoft.Maui.TestCases.Tests.Issues
 		public override string Issue => "Navigation Bar back button does not show when using InsertPageBefore";
 
 		// Crashing when navigating
-		/*
+		
 		[Test]
 		[Category(UITestCategories.Navigation)]
 		[Category(UITestCategories.Compatibility)]
-		[FailsOnAndroidWhenRunningOnXamarinUITest]
-		[FailsOnIOSWhenRunningOnXamarinUITest]
-		[FailsOnMacWhenRunningOnXamarinUITest]
+		
 		public void Bugzilla40005Test()
 		{
 			App.WaitForElement(PageOneLabel);
@@ -32,6 +30,6 @@ namespace Microsoft.Maui.TestCases.Tests.Issues
 			App.Back();
 			App.WaitForElement(PageOneLabel);
 		}
-		*/
+		
 	}
 }
