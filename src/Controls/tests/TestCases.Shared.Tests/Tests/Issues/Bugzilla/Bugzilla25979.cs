@@ -1,4 +1,3 @@
-#if TEST_FAILS_ON_IOS && TEST_FAILS_ON_CATALYST
 using NUnit.Framework;
 using UITest.Appium;
 using UITest.Core;
@@ -40,4 +39,3 @@ public class Bugzilla25979 : _IssuesUITest
 		App.WaitForNoElement("PopAttempted");
 	}
 }
-#endif

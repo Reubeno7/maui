@@ -1,4 +1,3 @@
-#if IOS
 using NUnit.Framework;
 using UITest.Appium;
 using UITest.Core;
@@ -24,4 +23,3 @@ public class Bugzilla21177 : _IssuesUITest
          App.Tap("Cancel");
      }
 }
-#endif

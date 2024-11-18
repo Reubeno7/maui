@@ -1,6 +1,6 @@
 namespace Maui.Controls.Sample.Issues;
 
-
+ 
 [Issue(IssueTracker.Bugzilla, 43469, "Calling DisplayAlert twice in WinRT causes a crash", PlatformAffected.WinRT)]
 
 public class Bugzilla43469 : TestContentPage

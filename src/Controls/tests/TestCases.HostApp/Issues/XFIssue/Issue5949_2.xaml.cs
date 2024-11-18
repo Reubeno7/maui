@@ -1,48 +1,66 @@
-﻿namespace Maui.Controls.Sample.Issues;
-
-public partial class Issue5949_2 : ContentPage
+﻿namespace Maui.Controls.Sample.Issues
 {
-	public const string BackButton = "5949GoBack";
-	public const string ToolBarItem = "Login";
-
-	public Issue5949_2()
+	public partial class Issue5949_2 : ContentPage
 	{
-		InitializeComponent();
-		ToolbarItems.Add(new ToolbarItem(ToolBarItem, null, () => Navigation.PushAsync(LoginPage())));
-		BindingContext = new _5949ViewModel();
-	}
+		public const string BackButton = "5949GoBack";
+		public const string ToolBarItem = "Login";
 
-	class _5949ViewModel
-	{
-		public _5949ViewModel()
+		public Issue5949_2()
 		{
-			Items = new List<string>
+			InitializeComponent();
+			ToolbarItems.Add(new ToolbarItem(ToolBarItem, null, () => Navigation.PushAsync(LoginPage())));
+			BindingContext = new _5949ViewModel();
+
+			// Create a new label
+			var label = new Label
 			{
-				"one", "two", "three"
+				Text = "This is Me",
+				HorizontalOptions = LayoutOptions.Center,
+				VerticalOptions = LayoutOptions.Center
+			};
+
+			// Add the label to the content layout
+			Content = new StackLayout
+			{
+				Children =
+				{
+					label
+				}
 			};
 		}
 
-		public List<string> Items { get; set; }
-	}
-
-	ContentPage LoginPage()
-	{
-		var page = new ContentPage
+		class _5949ViewModel
 		{
-			Title = "Issue 5949"
-		};
+			public _5949ViewModel()
+			{
+				Items = new List<string>
+				{
+					"one", "two", "three"
+				};
+			}
 
-		var button = new Button { Text = "Back", AutomationId = BackButton };
+			public List<string> Items { get; set; }
+		}
 
-		button.Clicked += ButtonClicked;
+		ContentPage LoginPage()
+		{
+			var page = new ContentPage
+			{
+				Title = "Issue 5949"
+			};
 
-		page.Content = button;
+			var button = new Button { Text = "Back", AutomationId = BackButton };
 
-		return page;
-	}
+			button.Clicked += ButtonClicked;
 
-	private void ButtonClicked(object sender, EventArgs e)
-	{
-		Application.Current.MainPage = new Issue5949_1();
+			page.Content = button;
+
+			return page;
+		}
+
+		private void ButtonClicked(object sender, EventArgs e)
+		{
+			Application.Current.MainPage = new Issue5949_1();
+		}
 	}
 }

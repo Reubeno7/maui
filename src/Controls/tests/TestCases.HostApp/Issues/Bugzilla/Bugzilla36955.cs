@@ -1,32 +1,37 @@
-namespace Maui.Controls.Sample.Issues;
-
-
-[Issue(IssueTracker.Bugzilla, 36955, "[iOS] ViewCellRenderer.UpdateIsEnabled referencing null object", PlatformAffected.iOS)]
-public class Bugzilla36955 : TestContentPage
+namespace Maui.Controls.Sample.Issues
 {
-	protected override void Init()
+	[Issue(IssueTracker.Bugzilla, 36955, "[iOS] ViewCellRenderer.UpdateIsEnabled referencing null object", PlatformAffected.iOS)]
+	public class Bugzilla36955 : TestContentPage
 	{
-		var ts = new TableSection();
-		var tr = new TableRoot { ts };
-		var tv = new TableView(tr);
-
-		var sc = new SwitchCell
+		protected override void Init()
 		{
-			Text = "Toggle switch; nothing should crash"
-		};
+			var ts = new TableSection();
+			var tr = new TableRoot { ts };
+			var tv = new TableView(tr);
 
-		var button = new Button();
-		button.SetBinding(Button.TextProperty, new Binding("On", source: sc));
+			var sc = new SwitchCell
+			{
+				Text = "Toggle switch; nothing should crash",
+				AutomationId = ("Switch") //added the automationId for switch cell
+			};
 
-		var vc = new ViewCell
-		{
-			View = button
-		};
-		vc.SetBinding(Cell.IsEnabledProperty, new Binding("On", source: sc));
+			var button = new Button
+			{
+				Text = "fail", // Initialize the button with the text "fail"
+				AutomationId = "false" // Set the AutomationId for the button
+			};
+			button.SetBinding(Button.TextProperty, new Binding("On", source: sc));
 
-		ts.Add(sc);
-		ts.Add(vc);
+			var vc = new ViewCell
+			{
+				View = button
+			};
+			vc.SetBinding(Cell.IsEnabledProperty, new Binding("On", source: sc));
 
-		Content = tv;
+			ts.Add(sc);
+			ts.Add(vc);
+
+			Content = tv;
+		}
 	}
 }
