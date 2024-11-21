@@ -12,7 +12,7 @@
 			_entry.FontSize += delta;
 		}
 
-		protected override void Init()
+		protected override void Init()  
 		{
 			_entry = new Entry
 			{

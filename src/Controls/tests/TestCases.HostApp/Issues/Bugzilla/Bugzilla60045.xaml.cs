@@ -1,33 +1,57 @@
-namespace Maui.Controls.Sample.Issues;
-
-
-[Issue(IssueTracker.Bugzilla, 60045,
-	"ListView with RecycleElement strategy doesn't handle CanExecute of TextCell Command properly",
-	PlatformAffected.iOS)]
-public partial class Bugzilla60045 : TestContentPage
+namespace Maui.Controls.Sample.Issues
 {
-	public const string ClickThis = "Click This";
-	public const string Fail = "Fail";
-
-	public object Items { get; set; }
-
-	public Bugzilla60045()
+	[Issue(IssueTracker.Bugzilla, 60045,
+		"ListView with RecycleElement strategy doesn't handle CanExecute of TextCell Command properly",
+		PlatformAffected.iOS)]
+	public partial class Bugzilla60045 : TestContentPage
 	{
+		public const string ClickThis = "Click This";
+		public const string Fail = "Fail";
 
-		InitializeComponent();
+		public object Items { get; set; }
 
-	}
-
-	protected override void Init()
-	{
-		Items = new[]
+		public Bugzilla60045()
 		{
-			new {
-				Action = new Command(async () =>
-				{
-					await DisplayAlert(Fail, "Well, this is embarrassing.", "Ok");
-				},
-				() => false) }
-		};
+			InitializeComponent();
+		}
+
+		protected override void Init()
+		{
+			Items = new[]
+			{
+				new {
+					Action = new Command(async () =>
+					{
+						await DisplayAlert(Fail, "Well, this is embarrassing.", "Ok");
+					},
+					() => false)
+				}
+			};
+
+			// Create the button
+			var clickThisButton = new Button
+			{
+				Text = ClickThis,
+				AutomationId = ClickThis
+			};
+			var ClickThisLabel = new Label()
+			{
+				Text = ClickThis,
+				AutomationId = ClickThis
+
+			};
+
+			// Add the button to the parent layout
+			var stackLayout = new StackLayout
+			{
+				Children = 
+				{ 
+					ClickThisLabel 
+				}
+			};
+
+			// Set the content of the page to the layout
+			Content = stackLayout;
+		}
 	}
 }

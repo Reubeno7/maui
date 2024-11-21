@@ -17,7 +17,8 @@ public class Bugzilla60122 : TestContentPage
 
 		var instructions = new Label
 		{
-			Text = $"Long press the image below; the label below it should change to read {Success}"
+			Text = $"Long press the image below; the label below it should change to read {Success}",
+			AutomationId = Success,  
 		};
 
 		var result = new Label { Text = "Testing..." };
